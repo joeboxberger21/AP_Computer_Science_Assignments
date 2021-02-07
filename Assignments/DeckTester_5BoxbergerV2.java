@@ -5,7 +5,7 @@ public class DeckTester_5BoxbergerV2 {
         System.out.println("Testing Deck: "); 
 
         Deck deck = new Deck(true);
-        deck.shuffle();
+
         for (int i = 0; i < 52; i++) {
             System.out.println(deck.deal());
         }
