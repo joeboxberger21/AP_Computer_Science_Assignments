@@ -1,14 +1,8 @@
 import java.util.ArrayList;
 
-public class DeckTester_5BoxbergerV2 {
+public class PlayerTester_5Boxberger {
     public static void main(String[] args) {
-        System.out.println("Testing Deck: "); 
-
-        Deck deck = new Deck(true);
-
-        for (int i = 0; i < 52; i++) {
-            System.out.println(deck.deal());
-        }
+        System.out.println("♧ ♤ ♢ ♡");
     }
 }
 
@@ -41,14 +35,18 @@ class Card {
         return value;
     }
 
+    public String getName() {
+        return cardName;
+    }
+
     public String toString() {
-        return cardName + " of " + suit + " (" + value + "pts)";
+        return cardName + " " + suit + "(" + value + "pts)";
     }
 }
 
 class Deck {
     private ArrayList<Card> cards = new ArrayList<>();
-    private String[] suits = {"Clubs", "Hearts", "Spades", "Diamonds"};
+    private String[] suits = {"♧", "♡", "♤", "♢"};
     private String suit = suits[0];
 
     public Deck() {
@@ -76,9 +74,7 @@ class Deck {
     }
 
     public Card deal() {
-        Card card = cards.get(cards.size()-1);
-        cards.remove(cards.size()-1);
-        return card;
+        return cards.remove(cards.size()-1);
     }
 
     public void shuffle() {
@@ -100,5 +96,32 @@ class Deck {
             string += card + "\n";
         }
         return string;
+    }
+}
+
+class Hand {
+    ArrayList<Card> cards = new ArrayList<>();
+
+    public void addCard(Card card) {
+        cards.add(card);
+    }
+
+    public int getHandValue(){
+        int value = 0;
+        for (Card card:cards) {
+            if (!card.getName().equals("Ace")) {
+                value += card.getValue();
+            }
+        }
+        //TODO Determine ace value based on total score gotten so far
+        return value;
+    }
+
+    public String toString() {
+        String cardString = "";
+        for (Card card: cards) {
+            cardString += "[" + card + "] ";
+        }
+        return cardString + "\nHand Value: " + getHandValue();
     }
 }
