@@ -1,7 +1,14 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class PlayerTester_5Boxberger {
     public static void main(String[] args) {
+        Deck deck = new Deck(true);
+
+        Hand hand = new Hand();
+
+        System.out.println(hand);
+
         System.out.println("♧ ♤ ♢ ♡");
     }
 }
@@ -40,13 +47,13 @@ class Card {
     }
 
     public String toString() {
-        return cardName + " " + suit + "(" + value + "pts)";
+        return cardName  + " of " + suit;
     }
 }
 
 class Deck {
     private ArrayList<Card> cards = new ArrayList<>();
-    private String[] suits = {"♧", "♡", "♤", "♢"};
+    private String[] suits = {"Clubs", "Hearts", "Spades", "Diamonds"};
     private String suit = suits[0];
 
     public Deck() {
@@ -108,13 +115,26 @@ class Hand {
 
     public int getHandValue(){
         int value = 0;
+        ArrayList<Card> aces = new ArrayList<>();
+
         for (Card card:cards) {
             if (!card.getName().equals("Ace")) {
                 value += card.getValue();
+            } else {
+                aces.add(card);
             }
         }
-        //TODO Determine ace value based on total score gotten so far
-        return value;
+
+        int aceTotal = aces.size() * 11;
+        System.out.println(aceTotal);
+
+        int loops = 0;
+        while (value + aceTotal > 21 && loops < aces.size()) {
+            aceTotal -= 10; //Equivalent to turning a full value ace into a value of 1
+            System.out.println(aceTotal);                
+            loops++;
+        }
+        return value + aceTotal;
     }
 
     public String toString() {
@@ -123,5 +143,19 @@ class Hand {
             cardString += "[" + card + "] ";
         }
         return cardString + "\nHand Value: " + getHandValue();
+    }
+}
+
+class Player {
+    Hand hand = new Hand();
+    String choice;
+
+    public String getUserChoice() {
+        System.out.println(hand);
+        Scanner input = new Scanner(System.in);  
+        System.out.println("(H)it or (S)tay: ");
+        choice = input.nextLine();
+
+        return choice;
     }
 }
