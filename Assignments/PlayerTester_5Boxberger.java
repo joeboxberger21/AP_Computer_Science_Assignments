@@ -39,6 +39,10 @@ class Player {
     private Hand hand = new Hand();
     String choice;
 
+    /**
+     * Ask user if they want to hit or stay
+     * @return the users choice
+     */
     public String getUserChoice() {
         Scanner input = new Scanner(System.in);  
         System.out.print("\n(H)it or (S)tay: ");
@@ -46,11 +50,15 @@ class Player {
 
         return choice;
     }
-
+    /**
+     * @return return the user's hand
+     */
     public Hand getHand() {
         return hand;
     }
-
+    /**
+     * @return the users hand value since hand is a private variable
+     */
     public int getHandValue() {
         return hand.getHandValue();
     }
@@ -58,7 +66,9 @@ class Player {
     public void addCard(Card c) {
         hand.addCard(c);
     }
-
+    /**
+     * @return the users cards in hand
+     */
     public String toString() {
         return hand.toString();
     }
@@ -73,7 +83,9 @@ class Hand {
     public void addCard(Card card) {
         cards.add(card);
     }
-
+    /**
+     * @return point value of the cards in hand, calculates aces
+     */
     public int getHandValue(){
         int value = 0;
         ArrayList<Card> aces = new ArrayList<>();
@@ -96,7 +108,9 @@ class Hand {
         }
         return value + aceTotal;
     }
-
+    /**
+     * @return a string of cards listed out and formatted 
+     */
     public String toString() {
         String cardString = "";
         for (Card card: cards) {
