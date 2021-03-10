@@ -4,7 +4,7 @@ import java.util.Scanner;
  * AList-A10 Player and Hand classes
  * @author Joe Boxberger
  */
-public class DealerTester_5Boxberger {
+public class DealerTester_5BoxbergerV2 {
     public static void main(String[] args) {
         //Loop over main three times for testing purposes
         for(int i = 0; i < 3; i++) {
