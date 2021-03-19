@@ -29,15 +29,15 @@ class Shape {
     	yLoc = yLocation;
     }
 
-    public int getX() {return xLoc;}
-
-    public int getY() {return yLoc;}
-
     public Shape ( int xLocation, int yLocation, Color c) {
     	xLoc = xLocation;
     	yLoc = yLocation;
         color = c;
     }
+
+    public int getX() {return xLoc;}
+
+    public int getY() {return yLoc;}
 
     @Override
     public boolean equals(Object obj) {
@@ -45,6 +45,7 @@ class Shape {
         return shape.getX() == xLoc && shape.getY() == yLoc && shape.getColor() == color;
     }
 
+    @Override
     public String toString() {
         return "X Location: " + xLoc + ", Y Location: " + yLoc + ", Color: " + color;
     }
