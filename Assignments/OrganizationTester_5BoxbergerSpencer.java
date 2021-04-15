@@ -81,6 +81,7 @@ class Company extends Organization {
   
   @Override
   public String toString() {
-    return super.toString() + " Company Product: " + product;
+    return super() + " Company Product: " + product;
   }
 }
+
